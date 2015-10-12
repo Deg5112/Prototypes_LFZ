@@ -4,21 +4,15 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script>
-        var x = null;
-        var y;
-        var z = 'LearningFuze';
-        var output1 = x==y;
-        var output2 = x===y;
-        console.log(output1);
-        console.log(output2);
-
-        var output3 = 'x is an ' +  typeof x;
-        var output4 = 'y is ' + typeof y;
-        var output5 = 'z is a ' + typeof z;
-
-        console.log(output3);
-        console.log(output4);
-        console.log(output5);
+        function sum_of_multiples(num){
+            var total = 0
+            for(var x = 1; x<num;x++){
+                if(x%3==0||x%5==0){
+                    total += x;
+                }
+            }
+            return total;
+        }
 
 
     </script>
