@@ -23,11 +23,25 @@
             console.log(classRoom[i] + ' is at ' + i);
         }*/
 
-        var studentArray = [{name: "Bob", grade: 87}, {name: "Fred", grade: 82}, {name: "George", grade: 93}, {name: "Robert". grade: 85}];
-            function findStudent(student){
-                var output
-
+        var studentArray = [{name: "Bob", grade: 87}, {name: "Fred", grade: 82}, {name: "George", grade: 93}, {name: "Robert". grade: 85} ];
+            function findStudent(studentInput){
+                var output = '';
+                var i = 0;
+                var found = false ;
+                while(!found && i < studentArray[i]){
+                    var student = studentArray[i];
+                    if(studentInput === studentArray[i].name){
+                        output = 'Found ' + student.name + ' their grade is: ' + student.grade ;
+                    }else{
+                        output = 'Student ' + student.name + ' not found';
+                    }
+                    i++;
+               }
+                return output;
             }
+            console.log(studentArray('bob'));
+              console.log(studentArray('Fred'));
+            console.log(studentArray('George'));
     </script>
 </head>
 <body>
