@@ -1,0 +1,25 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<form>
+    <label for="howdy">howdy</label>
+    <input type="checkbox" id="howdy" value="howdy">
+    <textarea></textarea>
+    <button id='button' type="button">Submit</button>
+</form>
+
+<script>
+  $('button').click(function(){
+      var howdyVal = $('input').val();
+      var textAreaVal = $('textarea').val();
+
+      $.ajax({
+         dataType: 'text',
+          data: {howdy: howdyVal, textArea: textAreaVal},
+          url: 'http://localhost:8888/lfz/prototypes/php_superglobals/index.php',
+          method: 'post',
+          success: function(response){
+              console.log(response);
+          }
+      });
+  });
+
+</script>
