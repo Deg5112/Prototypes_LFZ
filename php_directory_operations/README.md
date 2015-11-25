@@ -29,7 +29,9 @@ To get these files to your local machine you will need to do the following
 2. **DO NOT** edit this README file
 
 #php directory operations
-## Prototype 1
+
+## Featureset 1
+
 - in index.php
 	- make a div to hold all the photos, with an ID of 'image_container'
 	- use the glob() PHP function to get a directory listing images
@@ -40,8 +42,15 @@ To get these files to your local machine you will need to do the following
 		- set the src = to the file value returned by glob()
 		- one image per value returned
 
-## Prototype 2
-- in dir_listing.php
+		- 
+		
+- in index.php
+	- create a bootstrap carousel
+	- using php, fill in each item's image with the images you found with glob
+
+## Featureset 2
+- in get_images.php
+
 	- use the same glob() code as above, however:
 		- make an associative array, output:
 			- success: operation is successful or not
@@ -49,20 +58,45 @@ To get these files to your local machine you will need to do the following
 			- files: an array of files from the images directory
 		- json_encode the output variable
 		- print the encoded variable
-- make carousel.php
-	- make a function: load_files()
-		- make an ajax call to dir_listing.php to get the list of files
-		- for each file given from dir_listing.php, use jquery to create an image for each file
-			- keep an array of each image made, image_array
-			- add a variable to keep track of which image is currently being displayed
+
+- make gallery.php
+	- make a JS function: load_files()
+		- Using AJAX, access your get_images.php file, getting the encoded JSON output
+		- Using jQuery DOM Creation
+			- create an image, and set the source appropriately
+			- append the image into a countainer.  Each image should be a maximum width of 25% of the container.
+			- make a click handler for each image.  It will do the following:
+				- open a BOOTSTRAP modal
+				- Make the image 100% of the modal's size
+		
+# OPTIONAL 
+
+## Featureset 2
+	- create a file, carousel.php
+	- make a JS function: load_files()
+		- Using AJAX, access your get_images.php file, getting the encoded JSON output
+		- Using jQuery DOM Creation
+			- create an image, and set the source appropriately
+			- append the image into a countainer.  
+			- Each image should be 
+				- 100% of the width of the container
+				- positioned absolutely
+				- left and top at 0%
+			- keep each image in an array: image_array
+			- add a variable to keep track of which image is currently being displayed.  By default this should be 0
+	- make JS functions: prev_image and next_image
+		- if next_image is clicked, display the next photo in image_array
+		- if prev_image is clicked, display the previous photo in image_array
+
 	- make a button, previous, that calls the function prev_image()
 	- make a button, next, that calls the function next_image()
 	- put the previous and next button somewhere where you can click on them, around the image.
 	- create the prev_image and next_image functions.  
-		- if next_image is clicked, display the next photo in image_array
-		- if prev_image is clicked, display the previous photo in image_array
 
-## Prototype 3 (extra credit)
+
+
+## Featureset 3 (extra credit)
+
 - in carousel.php
 	- put all images into a container, "image_container"
 		- make that container the size of the images (800x600 in this case)
@@ -80,7 +114,8 @@ To get these files to your local machine you will need to do the following
 		- prevent the animation from triggering again (cannot go past the bounds)
 		- or make the new index "wrap" around.  So -1 becomes image_array.length-1, image_array.length becomes 0
 
-## Prototype 4 (extra credit)
+## Featureset 4 (extra credit)
+
 - in carousel.php
 	- for each image created, also create a "dot" somewhere on the page to serve as an indicator
 	- make a class, "dot", which causes the element to look like a dot that is unselected
@@ -90,7 +125,9 @@ To get these files to your local machine you will need to do the following
 		- find the new current dot, and give it a class of active_dot
 		- using the current_image index should enable you to easily find the current dot
 
-## Prototype 5 (extra credit)
+
+## Featureset 5 (extra credit)
+
 - in carousel.php
 	- add a click handler onto each dot
 	- when the dot is clicked, the prev_image/next_image function should be called
@@ -113,4 +150,6 @@ To get these files to your local machine you will need to do the following
 	- If you are unsure on any of this or are unable to find your branch or repo, ask for help, don't just guess
 	- This is important if you want feedback and credit for the prototypes 
 
+
 <img src="https://github.com/Learning-Fuze/prototypes/blob/assets/assets/pr_php-directory-operations.png?raw=true" alt="">
+
