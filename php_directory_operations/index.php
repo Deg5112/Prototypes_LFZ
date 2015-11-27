@@ -1,8 +1,6 @@
-<?php
-$imageArr = (glob('images/*.jpg'));
-print_r($imageArr);
-
-?>
+<!DOCTYPE>
+<html>
+<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -12,44 +10,70 @@ print_r($imageArr);
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<style>
+    div#image-container {
+        border: 1px solid black;
+        width: 50%;
+        height: 50%;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 370px;
+        min-height: 317px;
+    }
+    div#inner-container {
+        border: 1px solid green;
+        position: absolute;
+        height: 90%;
+        width: 90%;
 
-<div id="image_container">
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
+    img {
+        width: 100%;
+        height: 100%;
+        display: inline;
+    }
+    #next, #prev {
+        background-color: rgba(58, 51, 51, 0.23);
+        display: inline-block;
+        position: absolute;
+    }
+    #next:hover, #prev:hover{
+        cursor: pointer;
+    }
+    #next {
+        right: 0;
+        bottom: 50%;
+    }
+    #prev{
+        left: 0;
+        bottom: 50%;
+    }
+    .glyphicon{
+        padding: 13px;
+    }
+</style>
+</head>
+<body>
+<?php
+include('object.php');
+?>
+<div id="image-container">
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <?php
-            print("<div class='item active'>
-                <img src=$imageArr[0]>
-            </div>");
-            for ($i = 1; $i<count($imageArr); $i++){
-                print("<div class='item'>
-                <img src=$imageArr[$i]>
-            </div>");
-            }
+    <div id="inner-container">
 
-            ?>
-
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <div id="next"><span class="glyphicon glyphicon-chevron-right"></span></div>
+        <div id="prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
     </div>
 </div>
+
+</body>
+
+</html>
 
 
