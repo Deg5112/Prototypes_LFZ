@@ -60,8 +60,8 @@
     .photo-icon {
         border: 2px solid white;
         position: relative;
-        width: 1.3em;
-        height: 1.3em;
+        width: 1em;
+        height: .9em;
         display: inline-block;
         z-index: 8;
         border-radius: 50%;
