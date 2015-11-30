@@ -8,6 +8,9 @@
         $('.glyphicon.glyphicon-chevron-left').click(function(){
            carousel1.prev(carousel1.imgArray);
         });
+        $('.photo-icon').click(function(){
+          carousel1.iconClick(this);
+        });
     });
 
 var carousel = function() {
@@ -18,6 +21,20 @@ var carousel = function() {
     this.init = function(){
         self.getPhotos();
     };
+    this.iconClick = function(elementClicked){
+        clearInterval(self.slideInterval);
+        var clickedIndex = $(elementClicked).attr('id');
+
+        $('.image').remove();
+        var startImg = self.imgArray[clickedIndex][0];
+        var $innerContainer = $('#inner-container');
+        $innerContainer.append(startImg);
+        self.slideShow(self.imgArray);
+        $('.photo-icon').removeClass('active');
+        $(elementClicked).addClass('active');
+        self.index = parseInt(clickedIndex);
+
+    };
     //next
     this.next = function (array) {
         clearInterval(self.slideInterval);
@@ -25,11 +42,13 @@ var carousel = function() {
         if(self.index === array.length) {
             self.index = 0;
         }
+
         $('.image').remove();
         var startImg = self.imgArray[self.index][0];
         var $innerContainer = $('#inner-container');
         $innerContainer.append(startImg);
         self.slideShow(self.imgArray);
+
     };
 
     //prev
@@ -47,17 +66,35 @@ var carousel = function() {
     };
 
     this.slideShow = function(array){
+        var $curPhoto = $('.photo-icon')[self.index];
+        $('.photo-icon').removeClass('active');
+        $($curPhoto).addClass('active');
 
         var $innerContainer = $('#inner-container');
 
         self.slideInterval = setInterval(function() {
+
+
             self.index += 1;
+            console.log(self.index);
             if(self.index === array.length) {
                 self.index = 0;
+                $('.photo-icon').removeClass('active');
+                var $curPhoto = $('.photo-icon')[self.index];
+                $($curPhoto).addClass('active');
+                var nextImg = array[self.index][0];
+                $('.image').remove();
+                $innerContainer.append(nextImg).hide().fadeIn('slow');
+            }else{
+
+                var nextImg = array[self.index][0];
+                $('.image').remove();
+                $innerContainer.append(nextImg).hide().fadeIn('slow');
+                $('.photo-icon').removeClass('active');
+                var $curPhoto = $('.photo-icon')[self.index];
+                $($curPhoto).addClass('active');
             }
-            var nextImg = array[self.index][0];
-            $('.image').remove();
-            $innerContainer.append(nextImg).hide().fadeIn('slow');
+
 
         }, 3000);
     };
@@ -70,12 +107,14 @@ var carousel = function() {
             url: 'http://localhost:8888/lfz/prototypes/php_directory_operations/dir_listing.php',
             success: function (response) {
                 for (var i = 0; i < response.images.length; i++) {
-                    var img = $('<img>').attr('src', response.images[i]).addClass('image');
+                    var img = $('<img>').attr('src', response.images[i]).attr('index', i).addClass('image');
+
                     self.imgArray.push(img);
                 }
                 var startImg = self.imgArray[self.index][0];
                 var $innerContainer = $('#inner-container');
                 $innerContainer.append(startImg);
+
               self.slideShow(self.imgArray);
             }
 
