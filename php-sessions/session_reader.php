@@ -1,5 +1,5 @@
-<!-- Session Reader -->
 <?php
+session_start();
 
 $_SESSION['form-data'] = $_POST;
 
@@ -26,6 +26,7 @@ if (!preg_match("/^[0-9]+$/", $age)) {
 
 if(isset($_SESSION['error'])){
     header('location: session_setter.php');
+//    print_r($_SESSION);
 }
 //if any errors.. return to original page..
 
