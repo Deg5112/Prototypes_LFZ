@@ -7,6 +7,7 @@
     <button type="button">Submit!</button>
 </form>
 <script>
+
     $(function(){
         $('button').click(function(){
             console.log('clicked');
@@ -15,17 +16,19 @@
             var user_id = $('#user_id').val();
 
             $.ajax({
-               method: 'POST',
+                method: 'POST',
                 dataType: 'json',
                 data: {title: title, details: details, user_id: user_id},
                 url: 'index_insert.php',
                 success: function(response){
-                    console.log(response + ' ' + typeof response);
+                    console.log(response);
                 },
+
                 error: function(){
                     console.log('unsuccessful');
                 }
             });
         });
     });
+
 </script>
