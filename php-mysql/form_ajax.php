@@ -9,6 +9,10 @@
 <script>
 
     $(function(){
+        var title = null;
+        var details = null;
+        var user_id = null;
+
         $('button').click(function(){
             console.log('clicked');
             var title = $('#title').val();
